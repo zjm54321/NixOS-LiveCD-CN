@@ -9,7 +9,7 @@
     imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix") ];
 
     # Gnome 配置
-    services.desktopManager.gnome = {
+    services.xserver.desktopManager.gnome = {
       # 覆盖 GNOME 默认设置以禁用 GNOME 导览和禁用挂起
       extraGSettingsOverrides = ''
         [org.gnome.shell]
