@@ -40,5 +40,46 @@
       ]
     );
 
+    # 中文环境配置
+    time.timeZone = "Asia/Shanghai";
+    i18n.defaultLocale = "zh_CN.UTF-8";
+    fonts = {
+      enableDefaultPackages = false;
+      fontDir.enable = true;
+      packages = with pkgs; [
+        noto-fonts-emoji
+        source-han-sans
+        source-han-serif
+        maple-mono.NF-CN
+      ];
+      fontconfig.defaultFonts = {
+        serif = [
+          "Source Han Serif SC"
+          "Source Han Serif TC"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Source Han Sans SC"
+          "Source Han Sans TC"
+          "Noto Color Emoji"
+        ];
+        monospace = [
+          "Maple Mono NF CN"
+          "Noto Color Emoji"
+        ];
+        emoji = [ "Noto Color Emoji" ];
+      };
+    };
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5 = {
+        addons = with pkgs; [
+          fcitx5-chinese-addons
+          fcitx5-configtool
+          fcitx5-gtk
+        ];
+      };
+    };
   }
 )
