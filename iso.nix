@@ -7,6 +7,10 @@
   {
     # 使用 NixOS Gnome 安装 ISO 镜像做为底本
     imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix") ];
+    environment.systemPackages = with pkgs; [
+      git
+      wget
+    ];
 
     # Gnome 配置
     services.xserver.desktopManager.gnome = {
@@ -81,5 +85,13 @@
         ];
       };
     };
+
+    # 代理配置
+    programs.clash-verge = {
+      enable = true;
+      package = pkgs.clash-verge-rev;
+    };
+    services.mihomo.tunMode = true;
+    networking.firewall.enable = false; # 禁用防火墙以避免代理问题
   }
 )
