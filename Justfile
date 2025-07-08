@@ -7,3 +7,7 @@ default:
 # 构建镜像
 build:
   nix build path:$PWD
+
+# 更新源
+up:
+  nix flake update
