@@ -1,5 +1,6 @@
 (
   {
+    lib,
     pkgs,
     modulesPath,
     ...
@@ -11,6 +12,10 @@
       git
       wget
     ];
+
+    # 系统基本设置
+    users.users."nixos".initialPassword = "nix";
+    users.users."nixos".initialHashedPassword = lib.mkForce null;
 
     # Gnome 配置
     services.xserver.desktopManager.gnome = {
