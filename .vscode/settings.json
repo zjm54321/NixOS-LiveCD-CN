@@ -1,0 +1,18 @@
+{
+    "nix.enableLanguageServer": true,
+    "nix.formatterPath": "nixfmt",
+    "nix.serverSettings": {
+        // check https://github.com/oxalica/nil/blob/main/docs/configuration.md for all options available
+        "nil": {
+            // "diagnostics": {
+            //  "ignored": ["unused_binding", "unused_with"],
+            // },
+            "formatting": {
+                "command": [
+                    "nixfmt"
+                ],
+            },
+        },
+    },
+    "direnv.restart.automatic": true
+}

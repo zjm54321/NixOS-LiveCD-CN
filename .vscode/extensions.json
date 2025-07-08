@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "pinage404.nix-extension-pack",
+        "nefrob.vscode-just-syntax",
+    ],
+    "unwantedRecommendations": [],
+}

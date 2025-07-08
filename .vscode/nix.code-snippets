@@ -1,0 +1,28 @@
+{
+	"NixOS Module Template": {
+		"scope": "nix",
+		"prefix": "init",
+		"body": [
+			"{",
+			"  config,",
+			"  lib,",
+			"  pkgs,",
+			"  ...",
+			"}:",
+			"{",
+			"  imports = [",
+			"    $1",
+			"  ];",
+			"",
+			"  options = {",
+			"    $2",
+			"  };",
+			"",
+			"  config = {",
+			"    $0",
+			"  };",
+			"}"
+		],
+		"description": "创建一个标准的 NixOS 模块模板"
+	}
+}
