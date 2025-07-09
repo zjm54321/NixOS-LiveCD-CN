@@ -19,6 +19,6 @@ jobs:
       - name: Upload ISO artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: nixos-custom-iso
+          name: nixos-gnome-LiveCD
           path: result/iso/*.iso
           retention-days: 1
