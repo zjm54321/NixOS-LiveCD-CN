@@ -1,0 +1,24 @@
+name: "Build ISO"
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Repository
+        run: nix flake check
+      - name: Build ISO
+        run: nix build path:$PWD
+      - name: Upload ISO artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nixos-custom-iso
+          path: result/iso/*.iso
+          retention-days: 1
