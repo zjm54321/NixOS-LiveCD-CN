@@ -8,22 +8,9 @@
    - 支持 GPG 智能卡
    - 启用 Nix Flakes 支持
 
-## 使用方法
-[使用方法](./INSTALL.md)
+# 使用方法
 
-## 自主构建
-### 前置要求
-- 启用了 nix flakes 功能
-- 配置了[ direnv ](https://github.com/nix-community/nix-direnv) 或使用 `nix develop` 命令进入开发环境
-### 构建 ISO 镜像
-```bash
-# 启用 direnv
-direnv allow
-# 构建
-just build
-```
-
-构建完成后，ISO 镜像文件将位于 `result/iso/` 目录下。
+查看[ Wiki ](https://github.com/zjm54321/NixOS-LiveCD-CN/wiki)
 
 # 许可证
 
