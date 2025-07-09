@@ -136,21 +136,7 @@
       yubikey-personalization
       libu2f-host
     ];
-    system.activationScripts.setup-gpg-config = ''
-            mkdir -p /home/nixos/.gnupg
-            cat > /home/nixos/.gnupg/scdaemon.conf << 'EOF'
-      disable-ccid
-      EOF
-            chown -R nixos:users /home/nixos/.gnupg
-            chmod 700 /home/nixos/.gnupg
-            chmod 600 /home/nixos/.gnupg/scdaemon.conf
-
-            cat >> /home/nixos/.bashrc << 'EOF'
-      export GPG_TTY=$(tty)
-      export SSH_AUTH_SOCK="$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)"
-      EOF
-            chown nixos:users /home/nixos/.bashrc
-    '';
+    environment.etc."gnupg/scdaemon.conf".text = ''disable-ccid'';
 
     # SSH 配置
     services.openssh.knownHosts = {
