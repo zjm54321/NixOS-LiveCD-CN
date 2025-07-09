@@ -11,6 +11,9 @@
     environment.systemPackages = with pkgs; [
       git
       wget
+
+      kdePackages.kleopatra # GPG 图形界面
+      pcsc-tools
     ];
 
     # 系统基本设置
@@ -112,5 +115,37 @@
     };
     services.mihomo.tunMode = true;
     networking.firewall.enable = false; # 禁用防火墙以避免代理问题
+
+    # GnuPG 配置
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-gnome3;
+      settings = {
+        default-cache-ttl = 3600;
+        max-cache-ttl = 86400;
+      };
+    };
+    hardware.gpgSmartcards.enable = true;
+    services.pcscd.enable = true;
+    services.udev.packages = with pkgs; [
+      yubikey-personalization
+      libu2f-host
+    ];
+    system.activationScripts.setup-gpg-config = ''
+            mkdir -p /home/nixos/.gnupg
+            cat > /home/nixos/.gnupg/scdaemon.conf << 'EOF'
+      disable-ccid
+      EOF
+            chown -R nixos:users /home/nixos/.gnupg
+            chmod 700 /home/nixos/.gnupg
+            chmod 600 /home/nixos/.gnupg/scdaemon.conf
+
+            cat >> /home/nixos/.bashrc << 'EOF'
+      export GPG_TTY=$(tty)
+      export SSH_AUTH_SOCK="$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)"
+      EOF
+            chown nixos:users /home/nixos/.bashrc
+    '';
   }
 )
