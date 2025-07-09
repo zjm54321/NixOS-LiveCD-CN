@@ -43,6 +43,7 @@
           packages = with pkgs; [
             nixfmt-rfc-style
             nil
+            just
           ];
         };
       }
