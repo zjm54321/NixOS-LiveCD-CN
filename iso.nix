@@ -17,6 +17,20 @@
     users.users."nixos".initialPassword = "nix";
     users.users."nixos".initialHashedPassword = lib.mkForce null;
 
+    nix.settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [ "nixos" ];
+      substituters = [
+        "https://mirrors.ustc.edu.cn/nix-channels/store"
+        "https://cache.nixos.org"
+      ];
+      trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+      builders-use-substitutes = true;
+    };
+
     # Gnome 配置
     services.xserver.desktopManager.gnome = {
       # 覆盖 GNOME 默认设置以禁用 GNOME 导览和禁用挂起
