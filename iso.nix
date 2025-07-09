@@ -36,6 +36,10 @@
 
     # Gnome 配置
     services.xserver.desktopManager.gnome = {
+      favoriteAppsOverride = ''
+        [org.gnome.shell]
+        favorite-apps=['nixos-manual.desktop','org.gnome.Console.desktop','firefox.desktop','org.gnome.Nautilus.desktop','clash-verge.desktop','org.kde.kleopatra.desktop','gparted.desktop']
+      '';
       # 覆盖 GNOME 默认设置以禁用 GNOME 导览和禁用挂起
       extraGSettingsOverrides = ''
         [org.gnome.shell]
